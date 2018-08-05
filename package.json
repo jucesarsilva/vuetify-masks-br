@@ -2,14 +2,14 @@
   "name": "vuetify-masks-br",
   "description": "Directives for Vue 2, precisely it's for use with Vuetify UI, but you can use with any other components.",
   "version": "0.0.1",
-  "author": { 
-    "name" : "Julio Cesar Silva", 
-    "email" : "julio_c.silva@outlook.com"
+  "author": {
+    "name": "Julio Cesar Silva",
+    "email": "julio_c.silva@outlook.com"
   },
   "private": false,
   "main": "index.js",
-  "repository": { 
-    "type": "git", 
+  "repository": {
+    "type": "git",
     "url": "https://github.com/jucesarsilva/vuetify-masks-br.git"
   },
   "scripts": {
@@ -19,9 +19,10 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "moment": "2.22.2",
     "vue": "2.5.16",
-    "vuetify": "1.0.19",
-    "vue-convenia-util": "0.7.1"
+    "vue-convenia-util": "0.7.1",
+    "vuetify": "1.0.19"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.0.0-beta.49",
