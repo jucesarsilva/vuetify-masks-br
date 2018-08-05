@@ -131,7 +131,7 @@ const cnpj = {
     }
 }
 
-const cpfcnpj = {
+const cnpjcpf = {
     bind(el) {
         el.getElementsByTagName('input')[0].setAttribute('maxlength', 18)
     },
@@ -165,4 +165,4 @@ const cep = {
     }
 }
 
-export { trim, rg, phone, cpf, cnpj, cpfcnpj, cep }
+export { trim, rg, phone, cpf, cnpj, cnpjcpf, cep }
