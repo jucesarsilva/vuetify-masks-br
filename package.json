@@ -1,7 +1,7 @@
 {
   "name": "vuetify-masks-br",
   "description": "Directives for Vue 2, precisely it's for use with Vuetify UI, but you can use with any other components.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": {
     "name": "Julio Cesar Silva",
     "email": "julio_c.silva@outlook.com"
