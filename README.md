@@ -1,6 +1,12 @@
 # vuetify-masks-br
 The vuetify-mask-br was born to format v-text-field into several br masks. But you can use it in any another component, the directives changes v-model by manipulate vnode.context. If want use this approach, fell free to apply in custom directives.
 
+## install
+```
+npm install vuetify-masks-br --save
+```
+
+## algoritm to manipulate model value from directive
 ```
 /**
  * Directive manipulate v-model (must be an object)
@@ -36,7 +42,7 @@ $ yarn global add @vue/cli
 $ npm install @vue/cli -g
 ```
 
-##how to use
+## how to use
 ```
 /* main.js */
 import { trim, cnpjcpf, cnpj, cpf, rg, phone, cep } from './../index'
