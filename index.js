@@ -47,7 +47,6 @@ const toCEP = (value) => {
     ])
     return formatted
 }
-
 /*################## direcitves ####################*/
 const trim = {
     update (el, binding, vnode) {
