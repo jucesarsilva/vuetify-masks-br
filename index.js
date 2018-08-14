@@ -33,7 +33,7 @@ const toCPFCNPJ = (cpfcnpj) => {
         [/(\d{3})(\d{1,2})$/, '$1-$2']
     ]
 
-    const formatted = !isValid ? null : replace(cpfcnpj, cpfcnpj.length > 14 ? cnpj : cpf)
+    const formatted = !isValid ? null : replace(cpfcnpj, cpfcnpj.replace(/[/.]/g, '').length > 12 ? cnpj : cpf)
 
     return formatted
 }
