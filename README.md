@@ -2,12 +2,12 @@
 The vuetify-mask-br was born to format v-text-field into several br masks. But you can use it in any another component, the directives changes v-model by manipulate vnode.context. If want use this approach, fell free to apply in custom directives.
 
 ## install
-```
+```sh
 npm install vuetify-masks-br --save
 ```
 
 ## algoritm to manipulate model value from directive
-```
+```js
 /**
  * Directive manipulate v-model (must be an object)
  */
@@ -22,12 +22,12 @@ export const {
         }
         //get level of v-model object 
         else {
-			levels.reduce((obj, key) => {
+            levels.reduce((obj, key) => {
                 //apply change in v-model here
-				if (key === levels[levels.length - 1]) obj[key] = obj[key]
-				return obj[key]
-			}, vnode.context)
-        }        
+                if (key === levels[levels.length - 1]) obj[key] = obj[key]
+                return obj[key]
+            }, vnode.context)
+        }
     }
 }
 ```
@@ -43,9 +43,9 @@ $ npm install @vue/cli -g
 ```
 
 ## how to use
-```
-/* main.js */
-import { trim, cnpjcpf, cnpj, cpf, rg, phone, cep } from './../index'
+```js
+// main.js
+import { trim, cnpjcpf, cnpj, cpf, rg, phone, cep } from 'vuetify-masks-br'
 
 Vue.directive('rg', rg)
 Vue.directive('cpf', cpf)
@@ -58,9 +58,10 @@ Vue.directive('cnpjcpf', cnpjcpf)
 new Vue({
   render: h => h(App)
 }).$mount('#app')
+```
 
-
-/* App.vue */
+```vue
+<!-- App.vue -->
 <template>
     <v-text-field
         label="CNPJ/CPF"
@@ -71,8 +72,8 @@ new Vue({
 </template>
 
 <script>
-    import { isCPF, isCNPJ } from '../node_modules/vue-convenia-util/src/validators'
-    
+    import { isCPF, isCNPJ } from 'vuetify-masks-br'
+
     export default {
         data () {
             return {
