@@ -6,11 +6,11 @@ import Util from 'vue-convenia-util'
 const toCNPJ = (cnpj) => {
     const isValid = is(cnpj, 'String')
     const formatted = !isValid ? null : replace(cnpj, [
-      [/\D/g, ''],
-      [/(\d{2})(\d)/, '$1.$2'],
-      [/(\d{3})(\d)/, '$1.$2'],
-      [/(\d{3})(\d)/, '$1$2'],
-      [/(\d{4})(\d{1,2})$/, '/$1-$2']
+        [/\D/g, ''],
+        [/(\d{2})(\d)/, '$1.$2'],
+        [/(\d{3})(\d)/, '$1.$2'],
+        [/(\d{3})(\d)/, '$1$2'],
+        [/(\d{4})(\d{1,2})$/, '/$1-$2']
     ])
     return formatted
 }
@@ -41,9 +41,9 @@ const toCPFCNPJ = (cpfcnpj) => {
 const toCEP = (value) => {
     const isValid = is(value, 'String')
     const formatted = !isValid ? null : replace(value, [
-      [/\D/g, ''],
-      [/(\d{2})(\d)/, '$1.$2'],
-      [/(\d{3})(\d{1,3})/, '$1-$2']
+        [/\D/g, ''],
+        [/(\d{2})(\d)/, '$1.$2'],
+        [/(\d{3})(\d{1,3})/, '$1-$2']
     ])
     return formatted
 }
@@ -54,10 +54,10 @@ const trim = {
         if (levels.length === 1) {
             vnode.context[levels[0]] = vnode.context[levels[0]].replace(/\s/g, "")
         } else {
-			levels.reduce((obj, key) => {
-				if (key === levels[levels.length - 1]) obj[key] = obj[key].replace(/\s/g, "")
-				return obj[key]
-			}, vnode.context)
+            levels.reduce((obj, key) => {
+                if (key === levels[levels.length - 1]) obj[key] = obj[key].replace(/\s/g, "")
+                return obj[key]
+            }, vnode.context)
         }        
     }
 }
@@ -71,10 +71,10 @@ const rg = {
         if (levels.length === 1) {
             vnode.context[levels[0]] = Util.format.toRG(vnode.context[levels[0]])
         } else {
-			levels.reduce((obj, key) => {
-				if (key === levels[levels.length - 1]) obj[key] = Util.format.toRG(obj[key])
-				return obj[key]
-			}, vnode.context)
+            levels.reduce((obj, key) => {
+                if (key === levels[levels.length - 1]) obj[key] = Util.format.toRG(obj[key])
+                return obj[key]
+            }, vnode.context)
         }
     }
 }
@@ -88,10 +88,10 @@ const phone = {
         if (levels.length === 1) {
             vnode.context[levels[0]] = Util.format.toPhone(vnode.context[levels[0]])
         } else {
-			levels.reduce((obj, key) => {
-				if (key === levels[levels.length - 1]) obj[key] = Util.format.toPhone(obj[key])
-				return obj[key]
-			}, vnode.context)
+            levels.reduce((obj, key) => {
+                if (key === levels[levels.length - 1]) obj[key] = Util.format.toPhone(obj[key])
+                return obj[key]
+            }, vnode.context)
         }
     }
 }
@@ -105,10 +105,10 @@ const cpf =  {
         if (levels.length === 1) {
             vnode.context[levels[0]] = Util.format.toCPF(vnode.context[levels[0]])
         } else {
-			levels.reduce((obj, key) => {
-				if (key === levels[levels.length - 1]) obj[key] = Util.format.toCPF(obj[key])
-				return obj[key]
-			}, vnode.context)
+            levels.reduce((obj, key) => {
+                if (key === levels[levels.length - 1]) obj[key] = Util.format.toCPF(obj[key])
+                return obj[key]
+            }, vnode.context)
         }
     }
 }
@@ -122,10 +122,10 @@ const cnpj = {
         if (levels.length === 1) {
             vnode.context[levels[0]] = toCNPJ(vnode.context[levels[0]])
         } else {
-			levels.reduce((obj, key) => {
-				if (key === levels[levels.length - 1]) obj[key] = toCNPJ(obj[key])
-				return obj[key]
-			}, vnode.context)
+            levels.reduce((obj, key) => {
+                if (key === levels[levels.length - 1]) obj[key] = toCNPJ(obj[key])
+                return obj[key]
+            }, vnode.context)
         }
     }
 }
@@ -139,10 +139,10 @@ const cnpjcpf = {
         if (levels.length === 1) {
             vnode.context[levels[0]] = toCPFCNPJ(vnode.context[levels[0]])
         } else {
-			levels.reduce((obj, key) => {
-				if (key === levels[levels.length - 1]) obj[key] = toCPFCNPJ(obj[key])
-				return obj[key]
-			}, vnode.context)
+            levels.reduce((obj, key) => {
+                if (key === levels[levels.length - 1]) obj[key] = toCPFCNPJ(obj[key])
+                return obj[key]
+            }, vnode.context)
         }
     }
 }
@@ -156,10 +156,10 @@ const cep = {
         if (levels.length === 1) {
             vnode.context[levels[0]] = toCEP(vnode.context[levels[0]])
         } else {
-			levels.reduce((obj, key) => {
-				if (key === levels[levels.length - 1]) obj[key] = toCEP(obj[key])
-				return obj[key]
-			}, vnode.context)
+            levels.reduce((obj, key) => {
+                if (key === levels[levels.length - 1]) obj[key] = toCEP(obj[key])
+                return obj[key]
+            }, vnode.context)
         }
     }
 }
