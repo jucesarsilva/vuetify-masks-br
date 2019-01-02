@@ -3,7 +3,7 @@ import './plugins/vuetify'
 
 import Vue from 'vue'
 import App from './App.vue'
-import { trim, cnpjcpf, cnpj, cpf, rg, phone, cep } from './../index'
+import { trim, cnpjcpf, cnpj, cpf, rg, phone, cep } from '../'
 
 Vue.config.productionTip = false
 

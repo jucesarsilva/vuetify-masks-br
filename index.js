@@ -1,52 +1,19 @@
-import { is } from './node_modules/vue-convenia-util/src/validators'
-import { replace } from './node_modules/vue-convenia-util/src/helpers'
-import Util from 'vue-convenia-util'
+import { formatToCEP, formatToCNPJ, formatToCPF, formatToPhone, formatToRG } from 'brazilian-values';
+
+const mapToNumeric = (value) => value.replace(/\D/g, '')
 
 /*################# custom formatters ####################*/
-const toCNPJ = (cnpj) => {
-    const isValid = is(cnpj, 'String')
-    const formatted = !isValid ? null : replace(cnpj, [
-      [/\D/g, ''],
-      [/(\d{2})(\d)/, '$1.$2'],
-      [/(\d{3})(\d)/, '$1.$2'],
-      [/(\d{3})(\d)/, '$1$2'],
-      [/(\d{4})(\d{1,2})$/, '/$1-$2']
-    ])
-    return formatted
+const formatToCPFCNPJ = (value) => {
+    if (typeof value !== 'string')
+        return null
+
+    const isCNPJ = mapToNumeric(value).length > 11
+
+    if (isCNPJ)
+        return formatToCNPJ(value)
+    return formatToCPF(value)
 }
 
-const toCPFCNPJ = (cpfcnpj) => {
-    const isValid = is(cpfcnpj, 'String')
-    
-    const cnpj = [
-        [/\D/g, ''],
-        [/(\d{2})(\d)/, '$1.$2'],
-        [/(\d{3})(\d)/, '$1.$2'],
-        [/(\d{3})(\d)/, '$1$2'],
-        [/(\d{4})(\d{1,2})$/, '/$1-$2']
-    ]
-
-    const cpf = [
-        [/\D/g, ''],
-        [/(\d{3})(\d)/, '$1.$2'],
-        [/(\d{3})(\d)/, '$1.$2'],
-        [/(\d{3})(\d{1,2})$/, '$1-$2']
-    ]
-
-    const formatted = !isValid ? null : replace(cpfcnpj, cpfcnpj.replace(/[/.]/g, '').length > 12 ? cnpj : cpf)
-
-    return formatted
-}
-
-const toCEP = (value) => {
-    const isValid = is(value, 'String')
-    const formatted = !isValid ? null : replace(value, [
-      [/\D/g, ''],
-      [/(\d{2})(\d)/, '$1.$2'],
-      [/(\d{3})(\d{1,3})/, '$1-$2']
-    ])
-    return formatted
-}
 /*################## direcitves ####################*/
 const trim = {
     update (el, binding, vnode) {
@@ -54,10 +21,10 @@ const trim = {
         if (levels.length === 1) {
             vnode.context[levels[0]] = vnode.context[levels[0]].replace(/\s/g, "")
         } else {
-			levels.reduce((obj, key) => {
-				if (key === levels[levels.length - 1]) obj[key] = obj[key].replace(/\s/g, "")
-				return obj[key]
-			}, vnode.context)
+            levels.reduce((obj, key) => {
+                if (key === levels[levels.length - 1]) obj[key] = obj[key].replace(/\s/g, "")
+                return obj[key]
+            }, vnode.context)
         }        
     }
 }
@@ -66,15 +33,15 @@ const rg = {
     bind(el) {
         el.getElementsByTagName('input')[0].setAttribute('maxlength', 12)
     },
-    update (el, binding, vnode) {
+    update (el, binding, vnode){
         const levels = binding.expression.split('.')
         if (levels.length === 1) {
-            vnode.context[levels[0]] = Util.format.toRG(vnode.context[levels[0]])
+            vnode.context[levels[0]] = formatToRG(vnode.context[levels[0]], 'SP')
         } else {
-			levels.reduce((obj, key) => {
-				if (key === levels[levels.length - 1]) obj[key] = Util.format.toRG(obj[key])
-				return obj[key]
-			}, vnode.context)
+            levels.reduce((obj, key) => {
+                if (key === levels[levels.length - 1]) obj[key] = formatToRG(obj[key], 'SP')
+                return obj[key]
+            }, vnode.context)
         }
     }
 }
@@ -86,12 +53,12 @@ const phone = {
     update (el, binding, vnode) {
         const levels = binding.expression.split('.')
         if (levels.length === 1) {
-            vnode.context[levels[0]] = Util.format.toPhone(vnode.context[levels[0]])
+            vnode.context[levels[0]] = formatToPhone(vnode.context[levels[0]])
         } else {
-			levels.reduce((obj, key) => {
-				if (key === levels[levels.length - 1]) obj[key] = Util.format.toPhone(obj[key])
-				return obj[key]
-			}, vnode.context)
+            levels.reduce((obj, key) => {
+                if (key === levels[levels.length - 1]) obj[key] = formatToPhone(obj[key])
+                return obj[key]
+            }, vnode.context)
         }
     }
 }
@@ -103,12 +70,12 @@ const cpf =  {
     update (el, binding, vnode) {
         const levels = binding.expression.split('.')
         if (levels.length === 1) {
-            vnode.context[levels[0]] = Util.format.toCPF(vnode.context[levels[0]])
+            vnode.context[levels[0]] = formatToCPF(vnode.context[levels[0]])
         } else {
-			levels.reduce((obj, key) => {
-				if (key === levels[levels.length - 1]) obj[key] = Util.format.toCPF(obj[key])
-				return obj[key]
-			}, vnode.context)
+            levels.reduce((obj, key) => {
+                if (key === levels[levels.length - 1]) obj[key] = formatToCPF(obj[key])
+                return obj[key]
+            }, vnode.context)
         }
     }
 }
@@ -120,12 +87,12 @@ const cnpj = {
     update (el, binding, vnode) {
         const levels = binding.expression.split('.')
         if (levels.length === 1) {
-            vnode.context[levels[0]] = toCNPJ(vnode.context[levels[0]])
+            vnode.context[levels[0]] = formatToCNPJ(vnode.context[levels[0]])
         } else {
-			levels.reduce((obj, key) => {
-				if (key === levels[levels.length - 1]) obj[key] = toCNPJ(obj[key])
-				return obj[key]
-			}, vnode.context)
+            levels.reduce((obj, key) => {
+                if (key === levels[levels.length - 1]) obj[key] = formatToCNPJ(obj[key])
+                return obj[key]
+            }, vnode.context)
         }
     }
 }
@@ -136,13 +103,14 @@ const cnpjcpf = {
     },
     update (el, binding, vnode) {
         const levels = binding.expression.split('.')
+        console.log(levels)
         if (levels.length === 1) {
-            vnode.context[levels[0]] = toCPFCNPJ(vnode.context[levels[0]])
+            vnode.context[levels[0]] = formatToCPFCNPJ(vnode.context[levels[0]])
         } else {
-			levels.reduce((obj, key) => {
-				if (key === levels[levels.length - 1]) obj[key] = toCPFCNPJ(obj[key])
-				return obj[key]
-			}, vnode.context)
+            levels.reduce((obj, key) => {
+                if (key === levels[levels.length - 1]) obj[key] = formatToCPFCNPJ(obj[key])
+                return obj[key]
+            }, vnode.context)
         }
     }
 }
@@ -154,14 +122,16 @@ const cep = {
     update (el, binding, vnode) {
         const levels = binding.expression.split('.')
         if (levels.length === 1) {
-            vnode.context[levels[0]] = toCEP(vnode.context[levels[0]])
+            vnode.context[levels[0]] = formatToCEP(vnode.context[levels[0]])
         } else {
-			levels.reduce((obj, key) => {
-				if (key === levels[levels.length - 1]) obj[key] = toCEP(obj[key])
-				return obj[key]
-			}, vnode.context)
+            levels.reduce((obj, key) => {
+                if (key === levels[levels.length - 1]) obj[key] = formatToCEP(obj[key])
+                return obj[key]
+            }, vnode.context)
         }
     }
 }
+
+export { isCNPJ, isCPF } from 'brazilian-values'
 
 export { trim, rg, phone, cpf, cnpj, cnpjcpf, cep }

@@ -90,7 +90,7 @@
 </template>
 
 <script>
-  import { isCPF, isCNPJ } from '../node_modules/vue-convenia-util/src/validators'
+  import { isCPF, isCNPJ } from '../'
 
   export default {
     name: 'App',
