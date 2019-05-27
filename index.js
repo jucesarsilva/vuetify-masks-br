@@ -103,7 +103,6 @@ const cnpjcpf = {
     },
     update (el, binding, vnode) {
         const levels = binding.expression.split('.')
-        console.log(levels)
         if (levels.length === 1) {
             vnode.context[levels[0]] = formatToCPFCNPJ(vnode.context[levels[0]])
         } else {
