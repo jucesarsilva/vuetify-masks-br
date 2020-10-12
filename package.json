@@ -3,6 +3,7 @@
   "description": "Directives for Vue 2, precisely it's for use with Vuetify UI, but you can use with any other components.",
   "version": "0.0.8",
   "license": "MIT",
+  "homepage": "http://jucesarsilva.github.io/vuetify-masks-br/",
   "author": {
     "name": "Julio Cesar Silva",
     "email": "julio_c.silva@outlook.com"
@@ -17,7 +18,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "brazilian-values": "^0.1.0",
@@ -31,6 +34,7 @@
     "@vue/cli-plugin-eslint": "^3.0.0-rc.5",
     "@vue/cli-plugin-unit-mocha": "^3.0.0-rc.5",
     "@vue/cli-service": "^3.0.0-rc.5",
+    "gh-pages": "^3.1.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "vue-cli-plugin-vuetify": "^0.1.6",
