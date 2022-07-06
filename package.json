@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "brazilian-values": "^0.1.0",
-    "moment": "2.22.2",
+    "moment": "2.29.4",
     "vue": "^2.5.17",
     "vuetify": "1.0.19"
   },
